@@ -4,46 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebSocket Client</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js"></script>
 </head>
 <body>
-    <h1>WebSocket Client</h1>
-    <div>
-        <input type="text" id="messageInput" placeholder="Type your message here...">
-        <button onclick="sendMessage()">Send</button>
+    <div class="container">
+        <header>
+            <h1>WebSocket Client</h1>
+        </header>
+        <main>
+            <div class="input-container">
+                <input type="text" id="messageInput" placeholder="Type your message here...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+            <div class="messages-container">
+                <h2>Messages</h2>
+                <div id="messages" class="messages"></div>
+            </div>
+        </main>
     </div>
-    <div>
-        <h2>Messages</h2>
-        <div id="messages"></div>
-    </div>
-
-    <script>
-        const socket = new WebSocket('ws://localhost:8080/ws');
-
-        socket.onopen = function(event) {
-            console.log('WebSocket is open now.');
-            document.getElementById('messages').innerHTML += '<p>WebSocket is open now.</p>';
-        };
-
-        socket.onmessage = function(event) {
-            console.log('Message from server:', event.data);
-            document.getElementById('messages').innerHTML += `<p>${event.data}</p>`;
-        };
-
-        socket.onerror = function(error) {
-            console.log('WebSocket Error:', error);
-            document.getElementById('messages').innerHTML += '<p>WebSocket Error.</p>';
-        };
-
-        socket.onclose = function(event) {
-            console.log('WebSocket is closed now.');
-            document.getElementById('messages').innerHTML += '<p>WebSocket is closed now.</p>';
-        };
-
-        function sendMessage() {
-            const message = document.getElementById('messageInput').value;
-            socket.send(message);
-            document.getElementById('messages').innerHTML += `<p>Sent: ${message}</p>`;
-        }
-    </script>
 </body>
 </html>
