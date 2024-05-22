@@ -1,6 +1,6 @@
 // const socket = new WebSocket('ws://localhost:8080/ws');
-// const socket = new WebSocket('ws://socket.gynga.org/ws');
-const socket = new WebSocket('wss://socket.gynga.org/ws');
+const socket = new WebSocket('ws://socket.gynga.org/ws');
+// const socket = new WebSocket('wss://socket.gynga.org/ws');
 
 socket.onopen = function(event) {
     console.log('WebSocket is open now.');
